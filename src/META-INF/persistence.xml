@@ -6,7 +6,7 @@
         version="2.1">
           <persistence-unit name="StoreWebsite">
           <properties>
-          <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/storedb"/>
+          <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/storedb?useSSL=false"/>
           <property name="javax.persistence.jdbc.user" value="root"/>
           <property name="javax.persistence.jdbc.password" value="password"/>
           <property name="javax.persistence.jdbc.driver" value="come.mysql.jdbc.Driver"/>
