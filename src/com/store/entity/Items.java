@@ -38,9 +38,7 @@ import javax.swing.event.TreeSelectionEvent;
 			+ "WHERE b.category.categoryId = :catId"),
 	@NamedQuery(name = "Items.findByCategory", query = "SELECT b FROM Items b JOIN "
 			+ "Category c ON b.category.categoryId = c.categoryId AND c.categoryId = :catId"),
-	@NamedQuery(name = "Items.listNew", query = "SELECT b FROM Items b ORDER BY b.publishDate DESC"),
 	@NamedQuery(name = "Items.search", query = "SELECT b FROM Items b WHERE b.title LIKE '%' || :keyword || '%'"
-			+ " OR b.author LIKE '%' || :keyword || '%'"
 			+ " OR b.description LIKE '%' || :keyword || '%'")
 })
 public class Items implements java.io.Serializable {
@@ -107,6 +105,15 @@ public class Items implements java.io.Serializable {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+	
+	@Column(name = "title", unique = true, nullable = false, length = 128)
+	public String getTitle() {
+		return this.title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	@Column(name = "description", nullable = false, length = 16777215)

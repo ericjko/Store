@@ -1,4 +1,6 @@
 <div align="center">
+
+<div align="center">
 <h1>Mobile Accessories</h1>
 </div>
 <div align="center">
@@ -8,4 +10,6 @@
 <a href="Login">Sign In</a>
 <a href="register">Register</a> 
 <a href="view_cart">Cart</a>
+</div>
+<div></div>
 </div>

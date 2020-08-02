@@ -15,19 +15,19 @@ import com.store.dao.CategoryDAO;
 import com.store.entity.Category;
 
 public class CategoryServices {
-	private EntityManagerFactory entityManagerFactory;
+	
 	private EntityManager entityManager;
 	private CategoryDAO categoryDAO;
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	
-	public CategoryServices(HttpServletRequest request, HttpServletResponse response) {
+	public CategoryServices(EntityManager entityManager, HttpServletRequest request, HttpServletResponse response) {
 		
 		this.request = request;
 		this.response = response;
+		this.entityManager = entityManager;
 		
-		entityManagerFactory = Persistence.createEntityManagerFactory("StoreWebsite");
-		entityManager = entityManagerFactory.createEntityManager();
+		
 		categoryDAO = new CategoryDAO(entityManager);
 	}
 	
