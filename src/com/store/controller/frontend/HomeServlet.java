@@ -1,6 +1,7 @@
 package com.store.controller.frontend;
 
 import java.io.IOException;
+
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.store.controller.BaseServlet;
+//import com.store.controller.BaseServlet;
 import com.store.dao.CategoryDAO;
 import com.store.entity.Category;
 
@@ -18,7 +19,7 @@ import com.store.entity.Category;
  * Servlet implementation class HomeServlet
  */
 @WebServlet("/")
-public class HomeServlet extends BaseServlet {
+public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     public HomeServlet() {
@@ -27,9 +28,9 @@ public class HomeServlet extends BaseServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CategoryDAO categoryDAO = new CategoryDAO(entityManager);
-		List<Category> listCategory = categoryDAO.listAll();
-		request.setAttribute("listCategory", listCategory);
+//		CategoryDAO categoryDAO = new CategoryDAO(entityManager);
+//		List<Category> listCategory = categoryDAO.listAll();
+//		request.setAttribute("listCategory", listCategory);
 		
 		String homepage = "frontend/index.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(homepage);
