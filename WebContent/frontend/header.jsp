@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <div align="center">
 
 <div align="center">
@@ -11,5 +13,9 @@
 <a href="register">Register</a> 
 <a href="view_cart">Cart</a>
 </div>
-<div></div>
+<div>
+<c:forEach var="category" items="${listCategory}">
+	<c:out value="${category.name}" />
+</c:forEach>
+</div>
 </div>
