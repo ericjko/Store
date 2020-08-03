@@ -13,9 +13,13 @@
 <a href="register">Register</a> 
 <a href="view_cart">Cart</a>
 </div>
+<div>&nbsp;</div>
 <div>
-<c:forEach var="category" items="${listCategory}">
-	<c:out value="${category.name}" />
+<c:forEach var="category" items="${listCategory}" varStatus="status">
+<a href="view_category?id=${category.categoryId}">
+	<b><c:out value="${category.name}"/></b>
+	</a>
+	&nbsp; |
 </c:forEach>
 </div>
 </div>

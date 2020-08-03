@@ -3,6 +3,7 @@ package com.store.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import com.store.entity.Category;
 import com.store.entity.Users;
@@ -52,8 +53,22 @@ public class JpaDAO<E> {
 		
 	}
 
-	public List<E> findWithNamedQuery(String string) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<E> findWithNamedQuery(String queryName) {
+		Query query = entityManager.createNamedQuery(queryName);
+		
+		return query.getResultList();
 	}
+	public List<E> findWithNamedQuery(String queryName, String paramName, Object paramValue) {
+		
+		Query query = entityManager.createNamedQuery(queryName);
+		
+		query.setParameter(paramName, paramValue);
+		
+		List<E> result = query.getResultList();
+		
+		
+		
+		return result;
+	}
+	
 }
