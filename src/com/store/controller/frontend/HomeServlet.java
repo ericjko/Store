@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.store.controller.BaseServlet;
 
 import com.store.dao.CategoryDAO;
+import com.store.dao.ItemsDAO;
 import com.store.entity.Category;
+import com.store.entity.Items;
 
 /**
  * Servlet implementation class HomeServlet
@@ -33,6 +35,16 @@ public class HomeServlet extends BaseServlet {
 		List<Category> listCategory = categoryDAO.listAll();
 		request.setAttribute("listCategory", listCategory);
 		
+//		ItemsDAO bookDAO = new ItemsDAO();
+//		
+//		List<Items> listNewBooks = bookDAO.listNewBooks();
+//		List<Items> listBestSellingBooks = bookDAO.listBestSellingBooks();
+//		List<Items> listFavoredBooks = bookDAO.listMostFavoredBooks();
+		
+//		request.setAttribute("listNewBooks", listNewBooks);
+//		request.setAttribute("listBestSellingBooks", listBestSellingBooks);
+//		request.setAttribute("listFavoredBooks", listFavoredBooks);
+//		
 		String homepage = "frontend/index.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(homepage);
 		dispatcher.forward(request, response);

@@ -1,6 +1,11 @@
 package com.store.service;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -8,6 +13,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import com.store.dao.CategoryDAO;
 import com.store.dao.ItemsDAO;
@@ -30,10 +36,17 @@ public class ItemsServices {
 		itemDAO = new ItemsDAO(entityManager);
 		categoryDAO = new CategoryDAO(entityManager);
 	}
-
 	public void listItems() throws ServletException, IOException {
+		listItems(null);
+	}
+
+	public void listItems(String message) throws ServletException, IOException {
 		List<Items> listItems = itemDAO.listAll();
 		request.setAttribute("listItems", listItems);
+		
+		if (message!= null) {
+			request.setAttribute("message", message);
+		}
 		
 		String listPage = "item_list.jsp";
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(listPage);
@@ -47,6 +60,57 @@ public class ItemsServices {
 		String newPage = "item_form.jsp";
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(newPage);
 		requestDispatcher.forward(request, response);
+		
+	}
+
+	public void createItem() throws ServletException, IOException {
+		
+		String title = request.getParameter("title");
+		
+		Items existItem = itemDAO.findByTitle(title);
+		
+		if (existItem != null) {
+			String message = "Could not create new item because the title '"
+					+ title + "' already exists.";
+			listItems(message);
+			return;
+		}
+		
+		Items newItem = new Items();
+		readItemFields(newItem);
+		
+		Items createdItem = itemDAO.create(newItem);
+		
+		if (createdItem.getItemId() > 0) {
+			String message = "A new item has been created successfully.";
+			listItems(message);
+		}
+	}
+	public void readItemFields(Items item) throws ServletException, IOException {
+		String title = request.getParameter("title");
+		String description = request.getParameter("description");
+		float price = Float.parseFloat(request.getParameter("price"));
+		
+		
+		
+		Integer categoryId = Integer.parseInt(request.getParameter("category"));
+		Category category = categoryDAO.get(categoryId);
+		item.setCategory(category);
+		
+		item.setPrice(price);
+		
+		Part part = request.getPart("itemImage");
+		
+		if (part != null && part.getSize() > 0) {
+			long size = part.getSize();
+			byte[] imageBytes = new byte[(int) size];
+			
+			InputStream inputStream = part.getInputStream();
+			inputStream.read(imageBytes);
+			inputStream.close();
+			
+			item.setImage(imageBytes);
+		}
 		
 	}
 }

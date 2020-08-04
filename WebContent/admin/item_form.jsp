@@ -34,7 +34,7 @@
 	<div align="center">
 		<c:if test="${item != null}">
 			<form action="update_item" method="post" id="itemForm" enctype="multipart/form-data">
-			<input type="hidden" name="bookId" value="${book.bookId}">
+			<input type="hidden" name="bookId" value="${item.itemId}">
 		</c:if>
 		<c:if test="${item == null}">
 			<form action="create_item" method="post" id="itemForm" enctype="multipart/form-data">
@@ -43,6 +43,7 @@
 		<table class="form">
 			<tr>
 				<td>Category:</td>
+				
 				<td>
 					<select name="category">
 						<c:forEach items="${listCategory}" var="category">
@@ -60,12 +61,7 @@
 			</tr>
 			<tr>
 				<td align="right">Title:</td>
-				<td align="left"><input type="text" id="title" name="title" size="20" value="${book.title}" /></td>
-			</tr>
-			<tr>
-				<td align="right">Publish Date:</td>
-				<td align="left"><input type="text" id="publishDate" name="publishDate" size="20" 
-					value="<fmt:formatDate pattern='MM/dd/yyyy' value='${book.publishDate}' />" /></td>
+				<td align="left"><input type="text" id="title" name="title" size="20" value="${item.title}" /></td>
 			</tr>			
 			<tr>
 				<td align="right">Item Image:</td>

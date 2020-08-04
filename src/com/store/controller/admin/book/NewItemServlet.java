@@ -14,10 +14,13 @@ import com.store.service.ItemsServices;
 @WebServlet("/admin/new_item")
 public class NewItemServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
+	
+	public NewItemServlet() {
+		
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 		ItemsServices itemServices = new ItemsServices(entityManager, request, response);
 		itemServices.showItemNewForm();
 	}
