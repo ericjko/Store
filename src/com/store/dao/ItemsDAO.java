@@ -53,6 +53,10 @@ public class ItemsDAO extends JpaDAO<Items> implements GenericDAO<Items> {
 		}
 		return null;
 	}
+	public List<Items> listByCategory(int categoryId) {
+		
+		return super.findWithNamedQuery("Items.findByCategory", "catId", "categoryId");
+	}
 
 	@Override
 	public long count() {

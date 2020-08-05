@@ -65,39 +65,24 @@ public class ItemsServices {
 
 	public void createItem() throws ServletException, IOException {
 		
-		String title = request.getParameter("title");
-		
-		Items existItem = itemDAO.findByTitle(title);
-		
-		if (existItem != null) {
-			String message = "Could not create new item because the title '"
-					+ title + "' already exists.";
-			listItems(message);
-			return;
-		}
-		
-		Items newItem = new Items();
-		readItemFields(newItem);
-		
-		Items createdItem = itemDAO.create(newItem);
-		
-		if (createdItem.getItemId() > 0) {
-			String message = "A new item has been created successfully.";
-			listItems(message);
-		}
-	}
-	public void readItemFields(Items item) throws ServletException, IOException {
+		Integer categoryId = Integer.parseInt(request.getParameter("category"));
 		String title = request.getParameter("title");
 		String description = request.getParameter("description");
 		float price = Float.parseFloat(request.getParameter("price"));
 		
+		System.out.println("Category ID: " + categoryId);
+		System.out.println("title: " + title);
+		System.out.println("description: " + description);
+		System.out.println("price: " + price);
 		
+		Items newItem = new Items();
+		newItem.setTitle(title);
+		newItem.setDescription(description);
 		
-		Integer categoryId = Integer.parseInt(request.getParameter("category"));
 		Category category = categoryDAO.get(categoryId);
-		item.setCategory(category);
+		newItem.setCategory(category);
 		
-		item.setPrice(price);
+		newItem.setPrice(price);
 		
 		Part part = request.getPart("itemImage");
 		
@@ -109,8 +94,78 @@ public class ItemsServices {
 			inputStream.read(imageBytes);
 			inputStream.close();
 			
-			item.setImage(imageBytes);
+			newItem.setImage(imageBytes);
 		}
+		
+		Items createdItem = itemDAO.create(newItem);
+		
+		if(createdItem.getItemId() > 0) {
+			String message = "A new book has been created successfully";
+			request.setAttribute("message", message);
+			listItems();
+			
+			
+		}
+		
+		
+		
+//		String title = request.getParameter("title");
+//		
+//		Items existItem = itemDAO.findByTitle(title);
+//		
+//		if (existItem != null) {
+//			String message = "Could not create new item because the title '"
+//					+ title + "' already exists.";
+//			listItems(message);
+//			return;
+//		}
+//		
+//		Items newItem = new Items();
+//		readItemFields(newItem);
+//		
+//		Items createdItem = itemDAO.create(newItem);
+//		
+//		if (createdItem.getItemId() > 0) {
+//			String message = "A new item has been created successfully.";
+//			listItems(message);
+//		}
+	}
+//	public void readItemFields(Items item) throws ServletException, IOException {
+//		String title = request.getParameter("title");
+//		String description = request.getParameter("description");
+//		float price = Float.parseFloat(request.getParameter("price"));
+//		
+//		
+//		
+//		Integer categoryId = Integer.parseInt(request.getParameter("category"));
+//		Category category = categoryDAO.get(categoryId);
+//		item.setCategory(category);
+//		
+//		item.setPrice(price);
+//		
+//		Part part = request.getPart("itemImage");
+//		
+//		if (part != null && part.getSize() > 0) {
+//			long size = part.getSize();
+//			byte[] imageBytes = new byte[(int) size];
+//			
+//			InputStream inputStream = part.getInputStream();
+//			inputStream.read(imageBytes);
+//			inputStream.close();
+//			
+//			item.setImage(imageBytes);
+//		}
+//		
+//	}
+	public void listItemsByCategory() throws ServletException, IOException {
+		int categoryId = Integer.parseInt(request.getParameter("id"));
+		List<Items> listItems = itemDAO.listByCategory(categoryId);
+		
+		request.setAttribute("listItems", listItems);
+		
+		String listPage = "frontend/items_list_by_category.jsp";
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(listPage);
+		requestDispatcher.forward(request, response);
 		
 	}
 }

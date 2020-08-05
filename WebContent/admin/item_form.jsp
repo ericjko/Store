@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -34,7 +36,7 @@
 	<div align="center">
 		<c:if test="${item != null}">
 			<form action="update_item" method="post" id="itemForm" enctype="multipart/form-data">
-			<input type="hidden" name="bookId" value="${item.itemId}">
+			<input type="hidden" name="itemId" value="${item.itemId}">
 		</c:if>
 		<c:if test="${item == null}">
 			<form action="create_item" method="post" id="itemForm" enctype="multipart/form-data">
@@ -43,7 +45,6 @@
 		<table class="form">
 			<tr>
 				<td>Category:</td>
-				
 				<td>
 					<select name="category">
 						<c:forEach items="${listCategory}" var="category">
@@ -62,7 +63,8 @@
 			<tr>
 				<td align="right">Title:</td>
 				<td align="left"><input type="text" id="title" name="title" size="20" value="${item.title}" /></td>
-			</tr>			
+			</tr>
+		
 			<tr>
 				<td align="right">Item Image:</td>
 				<td align="left">
@@ -110,7 +112,7 @@
 			rules: {
 				category: "required",
 				title: "required",
-				publishDate: "required",
+				
 				
 				<c:if test="${item == null}">
 				itemImage: "required",
@@ -123,7 +125,7 @@
 			messages: {
 				category: "Please select a category for the item",
 				title: "Please enter title of the item",
-				publishDate: "Please enter publish date of the item",
+				
 				itemImage: "Please choose an image of the item",
 				price: "Please enter price of the item",
 				description: "Please enter description of the item"
