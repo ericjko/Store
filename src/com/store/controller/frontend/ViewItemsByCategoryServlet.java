@@ -20,7 +20,6 @@ public class ViewItemsByCategoryServlet extends BaseServlet {
      * Default constructor. 
      */
     public ViewItemsByCategoryServlet() {
-        // TODO Auto-generated constructor stub
     }
 
 	/**

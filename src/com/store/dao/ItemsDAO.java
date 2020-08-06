@@ -10,6 +10,8 @@ import com.store.entity.Items;
 
 public class ItemsDAO extends JpaDAO<Items> implements GenericDAO<Items> {
 
+	
+	
 	public ItemsDAO(EntityManager entityManager) {
 		super(entityManager);
 		// TODO Auto-generated constructor stub
@@ -55,7 +57,7 @@ public class ItemsDAO extends JpaDAO<Items> implements GenericDAO<Items> {
 	}
 	public List<Items> listByCategory(int categoryId) {
 		
-		return super.findWithNamedQuery("Items.findByCategory", "catId", "categoryId");
+		return super.findWithNamedQuery("Items.findByCategory", "catId", categoryId);
 	}
 
 	@Override

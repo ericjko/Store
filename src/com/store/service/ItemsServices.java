@@ -160,12 +160,30 @@ public class ItemsServices {
 	public void listItemsByCategory() throws ServletException, IOException {
 		int categoryId = Integer.parseInt(request.getParameter("id"));
 		List<Items> listItems = itemDAO.listByCategory(categoryId);
+		Category category = categoryDAO.get(categoryId);
+		List<Category> listCategory = categoryDAO.listAll();
 		
+		request.setAttribute("listCategory", listCategory);
 		request.setAttribute("listItems", listItems);
+		request.setAttribute("category", category);
 		
 		String listPage = "frontend/items_list_by_category.jsp";
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(listPage);
 		requestDispatcher.forward(request, response);
 		
 	}
+	public void viewBookDetail() throws ServletException, IOException {
+		Integer itemId = Integer.parseInt(request.getParameter("id"));
+		Items item = itemDAO.get(itemId);
+		List<Category> listCategory = categoryDAO.listAll();
+		request.setAttribute("listCategory", listCategory);
+		request.setAttribute("item", item);
+		
+		String detailPage = "frontend/item_detail.jsp";
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(detailPage);
+		requestDispatcher.forward(request, response);
+		
+		
+	}
+	
 }
