@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Your Shopping Cart</title>
 <link rel="stylesheet" href="css/style.css">
-<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
 </head>
 <body>
@@ -15,7 +15,7 @@
 	<div align="center">
 		<h2>Your Cart Details</h2>
 
-		<c:if test="${message != null}">
+		<c:if test="${message != null}"> 
 			<div align="center">
 				<h4 class="message">${message}</h4>
 			</div>
@@ -86,7 +86,7 @@
 
 	<script type="text/javascript">
 	
-		$(document).ready(function() {
+/* 		$(document).ready(function() {
 			$("#clearCart").click(function() {
 				window.location = 'clear_cart';
 			});
@@ -111,7 +111,7 @@
 				}
 			});
 
-		});
+		}); */
 	</script>
 </body>
 </html>

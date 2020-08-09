@@ -10,10 +10,8 @@ import com.store.entity.Items;
 
 public class ItemsDAO extends JpaDAO<Items> implements GenericDAO<Items> {
 
-	
-	
-	public ItemsDAO(EntityManager entityManager) {
-		super(entityManager);
+	public ItemsDAO() {
+
 		// TODO Auto-generated constructor stub
 	}
 	

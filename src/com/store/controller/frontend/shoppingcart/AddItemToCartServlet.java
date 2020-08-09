@@ -34,7 +34,7 @@ public class AddItemToCartServlet extends HttpServlet {
 			request.getSession().setAttribute("cart", shoppingCart);
 		}
 		
-		ItemsDAO itemDAO = new ItemsDAO(null);
+		ItemsDAO itemDAO = new ItemsDAO();
 		Items item = itemDAO.get(itemId);
 		
 		shoppingCart.addItem(item);

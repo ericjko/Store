@@ -22,19 +22,19 @@ import com.store.entity.Items;
 
 public class ItemsServices {
 	
-	private EntityManager entityManager;
+	
 	private ItemsDAO itemDAO;
 	private CategoryDAO categoryDAO;
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	
-	public ItemsServices(EntityManager entityManager, HttpServletRequest request, HttpServletResponse response) {
+	public ItemsServices(HttpServletRequest request, HttpServletResponse response) {
 		super();
-		this.entityManager = entityManager;
+		
 		this.request = request;
 		this.response = response;
-		itemDAO = new ItemsDAO(entityManager);
-		categoryDAO = new CategoryDAO(entityManager);
+		itemDAO = new ItemsDAO();
+		categoryDAO = new CategoryDAO();
 	}
 	public void listItems() throws ServletException, IOException {
 		listItems(null);

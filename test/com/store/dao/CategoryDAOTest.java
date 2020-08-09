@@ -14,23 +14,20 @@ import com.store.entity.Category;
 
 class CategoryDAOTest {
 	
-	private static EntityManagerFactory entityManagerFactory;
-	private static EntityManager entityManager;
+
 	private static CategoryDAO categoryDao;
 	
 	
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		entityManagerFactory = Persistence.createEntityManagerFactory("StoreWebsite");
-		entityManager = entityManagerFactory.createEntityManager();
-		categoryDao = new CategoryDAO(entityManager);
+		
+		categoryDao = new CategoryDAO();
 	}
 
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
-		entityManager.close();
-		entityManagerFactory.close();
+		
 	}
 
 	@Test
