@@ -33,12 +33,12 @@ public class ViewCartServlet extends HttpServlet {
 			request.getSession().setAttribute("cart", shoppingCart);
 		}
 		
-		Items item = new Items();
-		item.setTitle("Iphone 8 wallet case");
-		item.setPrice(4);
-		
-		ShoppingCart shoppingCart = (ShoppingCart) request.getSession().getAttribute("cart");
-		shoppingCart.addItem(item);
+//		Items item = new Items();
+//		item.setTitle("Iphone 8 wallet case");
+//		item.setPrice(4);
+//		
+//		ShoppingCart shoppingCart = (ShoppingCart) request.getSession().getAttribute("cart");
+//		shoppingCart.addItem(item);
 		
 		String cartPage = "frontend/shopping_cart.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(cartPage);
