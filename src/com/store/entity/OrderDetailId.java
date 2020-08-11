@@ -19,7 +19,7 @@ public class OrderDetailId implements java.io.Serializable {
 
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "book_id", insertable = false, updatable = false, nullable = false)
+	@JoinColumn(name = "item_id", insertable = false, updatable = false, nullable = false)
 	public Items getItem() {
 		return this.item;
 	}
