@@ -1,4 +1,4 @@
-package com.store.controller.frontend;
+package com.store.controller.frontend.item;
 
 import com.store.service.ItemsServices;
 
