@@ -145,7 +145,7 @@ public class ItemOrder implements java.io.Serializable {
 		this.paymentMethod = paymentMethod;
 	}
 
-	@Column(name = "total", nullable = false, precision = 12, scale = 0)
+	@Column(name = "order_total", nullable = false, precision = 12, scale = 0)
 	public float getTotal() {
 		return this.total;
 	}
@@ -154,7 +154,7 @@ public class ItemOrder implements java.io.Serializable {
 		this.total = total;
 	}
 
-	@Column(name = "status", nullable = false, length = 20)
+	@Column(name = "order_status", nullable = false, length = 20)
 	public String getStatus() {
 		return this.status;
 	}

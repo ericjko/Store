@@ -12,6 +12,6 @@ Welcome, Admin | <a href="Logout">Logout</a>
 <a href="list_items">Items</a>
 <a href="customer">Customers</a>
 <a href="reviews">Reviews</a>
-<a href="orders">Orders</a>
+<a href="list_order">Orders</a>
 </div>
 </div>
