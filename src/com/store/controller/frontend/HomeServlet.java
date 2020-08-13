@@ -17,10 +17,8 @@ import com.store.dao.ItemsDAO;
 import com.store.entity.Category;
 import com.store.entity.Items;
 
-/**
- * Servlet implementation class HomeServlet
- */
-@WebServlet("/")
+
+@WebServlet("")
 public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

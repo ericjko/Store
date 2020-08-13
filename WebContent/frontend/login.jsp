@@ -41,7 +41,7 @@
 		</form>
 	</div>
 	
-	<%-- <jsp:directive.include file="footer.jsp" /> --%>
+	<jsp:directive.include file="footer.jsp" />
 	
 <script type="text/javascript">
 

@@ -18,7 +18,7 @@
 <h2>New Accessories</h2>
 </div>
 
-<jsp:directive.include file="footer.jsp" />
+<%-- <jsp:directive.include file="footer.jsp" /> --%>
 
 </body>
 </html>
